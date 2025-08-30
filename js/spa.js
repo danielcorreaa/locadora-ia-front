@@ -1,8 +1,11 @@
 // APIs
-const API_CLIENTE = "http://localhost:8080/clientes";
-const API_FILME = "http://localhost:8080/filmes";
-const API_LOCACAO = "http://localhost:8080/locacoes";
-const API_MULTA = "http://localhost:8080/multas";
+const URL_BACKEND_LOCAL = "http://localhost:8080"
+const URL_BACKEND = "https://locadora-ia.onrender.com"
+
+const API_CLIENTE = {URL_BACKEND}+"/clientes";
+const API_FILME = {URL_BACKEND}+"/filmes";
+const API_LOCACAO = {URL_BACKEND}+"/locacoes";
+const API_MULTA = {URL_BACKEND}+"/multas";
 
 
 // Toast
