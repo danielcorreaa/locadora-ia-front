@@ -4,7 +4,7 @@
 const pageSize = 2;
 
 async function listarClientes(page = 0) {
-    const response = await fetch(`http://localhost:8080/clientes?page=${page}&size=${pageSize}`);
+    const response = await fetch(`${API_CLIENTE}?page=${page}&size=${pageSize}`);
     const data = await response.json();
     
     const lista = document.getElementById("listaClientes");

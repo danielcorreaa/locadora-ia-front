@@ -6,7 +6,7 @@ async function listarFilmes(page = 0){
     const container=document.getElementById("listaFilmes");
     container.innerHTML="";
     try{
-        const response = await fetch(`http://localhost:8080/filmes?page=${page}&size=${pageSizeFilme}`);
+        const response = await fetch(`${API_FILME}?page=${page}&size=${pageSizeFilme}`);
         const filmes = await response.json();
 
         filmes.content.forEach(f=>container.appendChild(criarCardFilme(f)));
