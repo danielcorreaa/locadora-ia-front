@@ -48,6 +48,7 @@
                 <h2>Buscar Cliente</h2>
                 <input type="text" id="searchCpf" class="cpf-input" placeholder="Digite o CPF do cliente" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                 <button id="btnBuscar">Buscar</button>
+                <button id="btCarregar" onclick="listarClientes()">Buscar Todos</button>
             </div>
 
             <div class="list-container">
@@ -77,12 +78,13 @@
                 <h2>Buscar Filme</h2>
                 <input type="text" id="searchId" placeholder="Digite o código do Filme">
                 <button id="btnBuscarFilme">Buscar</button>
+                <button id="btCarregar" onclick="listarFilmes()">Buscar Todos</button>
+
             </div>
 
             <div class="list-container">
                 <div class="cards" id="listaFilmes"></div>
                 <div id="paginacaoFilme" class="paginacao"></div>
-
             </div>
         </section>
 

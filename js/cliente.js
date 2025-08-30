@@ -66,6 +66,7 @@ function criarCardCliente(c) {
     // Botão Excluir
     card.querySelector(".btnDelete").addEventListener("click", async (e) => {
         if (confirm("Deseja excluir este cliente?")) {
+            showLoader();
             const btnDelete = e.target;
             btnDelete.disabled = true;
             btnDelete.textContent = "Excluindo...";
@@ -76,21 +77,22 @@ function criarCardCliente(c) {
 
                 showToast("Cliente excluído!");
                 listarClientes();
-                carregarClientesFilmes();
             } catch (err) {
                 showToast(err.message, "error");
                 btnDelete.disabled = false;
                 btnDelete.textContent = "🗑️ Excluir";
+            } finally{
+                hideLoader();
             }
         }
     });
-
     return card;
 }
 
 
 document.getElementById("formCliente").addEventListener("submit",async e=>{
     e.preventDefault();
+    showLoader();
     const cliente={
         nome:document.getElementById("clienteNome").value.trim(),
         cpf:document.getElementById("clienteCpf").value.trim(),
@@ -106,14 +108,15 @@ document.getElementById("formCliente").addEventListener("submit",async e=>{
         showToast("Cliente cadastrado!");
         document.getElementById("formCliente").reset();
         listarClientes();
-        carregarClientesFilmes();
-    }catch(err){showToast(err.message,"error");}
+    }catch(err){showToast(err.message,"error");
+    }finally{hideLoader()}
 });
 
 // Modal Cliente
 function abrirModalCliente(c){
     const modal=document.getElementById("modalEdit");
     const formEdit=document.getElementById("formEdit");
+     showLoader();
     formEdit.innerHTML=`       
         <input type="text" id="editClienteNome" value="${c.nome}" required>
         <input type="text" id="editClienteCpf" value="${c.cpf}" required>
@@ -138,7 +141,8 @@ function abrirModalCliente(c){
             modal.style.display="none";
             showToast("Cliente atualizado!");
             listarClientes();
-        }catch(err){showToast(err.message,"error");}
+        }catch(err){showToast(err.message,"error");
+        }finally{hideLoader()}
     };
     modal.style.display="block";
     modal.querySelector(".close").onclick=()=>modal.style.display="none";
@@ -147,13 +151,12 @@ function abrirModalCliente(c){
 
 document.getElementById("btnBuscar").addEventListener("click", async () => {
     const cpf = document.getElementById("searchCpf").value.trim();
-    const resultadoDiv = document.getElementById("resultadoBusca");
 
     if (!cpf) {
-        resultadoDiv.textContent = "Digite um CPF para buscar.";
+        showToast( "Digite um CPF para buscar.");
         return;
     }
-
+    showLoader();
     try {
         const response = await fetch(`${API_CLIENTE}/${cpf}`);
         if (!response.ok) throw new Error("Cliente não encontrado");
@@ -164,6 +167,6 @@ document.getElementById("btnBuscar").addEventListener("click", async () => {
         lista.appendChild(criarCardCliente(cliente));
         atualizarPaginacao(cliente)
     } catch (error) {
-        resultadoDiv.textContent = "Cliente não encontrado ou erro na busca.";
-    }
+        showToast("Cliente não encontrado ou erro na busca.")
+    } finally{hideLoader()}
 });

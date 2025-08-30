@@ -5,13 +5,15 @@ const pageSizeFilme = 2;
 async function listarFilmes(page = 0){
     const container=document.getElementById("listaFilmes");
     container.innerHTML="";
+    showLoader()
     try{
         const response = await fetch(`${API_FILME}?page=${page}&size=${pageSizeFilme}`);
         const filmes = await response.json();
 
         filmes.content.forEach(f=>container.appendChild(criarCardFilme(f)));
         atualizarPaginacaoFilmes(filmes);
-    }catch{showToast("Erro ao listar filmes","error");}    
+    }catch{showToast("Erro ao listar filmes","error");}
+    finally{hideLoader()}    
 }
 
 function atualizarPaginacaoFilmes(data) {
@@ -58,13 +60,24 @@ function criarCardFilme(f) {
     card.querySelector(".btnEdit").addEventListener("click", () => abrirModalFilme(f));
 
     // Botão Excluir
-    card.querySelector(".btnDelete").addEventListener("click", async () => {
+    card.querySelector(".btnDelete").addEventListener("click", async (e) => {
         if (confirm("Deseja excluir este filme?")) {
-            const res = await fetch(`${API_FILME}/${f.id}`, { method: "DELETE" });
+             const btnDelete = e.target;
+             btnDelete.disabled = true;
+             btnDelete.textContent = "Excluindo...";
+
+            try{
+                const res = await fetch(`${API_FILME}/${f.id}`, { method: "DELETE" });
             if (!res.ok) return showToast("Erro ao excluir", "error");
-            showToast("Filme excluído!");
-            listarFilmes();
-            carregarClientesFilmes();
+                showToast("Filme excluído!");
+                listarFilmes();
+            } catch (err) {
+                showToast(err.message, "error");
+                btnDelete.disabled = false;
+                btnDelete.textContent = "🗑️ Excluir";
+            } finally{
+                hideLoader();
+            }
         }
     });
 
@@ -138,10 +151,10 @@ document.getElementById("btnBuscarFilme").addEventListener("click", async () => 
     const id = document.getElementById("searchId").value.trim();
 
     if (!id) {
-        resultadoDiv.textContent = "Digite um código para buscar.";
+        showToast("Digite um código para buscar.");
         return;
     }
-
+    showLoader();
     try {
         const response = await fetch(`${API_FILME}/${id}`);
         if (!response.ok) throw new Error("Filme não encontrado");
@@ -152,6 +165,6 @@ document.getElementById("btnBuscarFilme").addEventListener("click", async () => 
         filmes.content.forEach(f=>container.appendChild(criarCardFilme(f)));
         atualizarPaginacao(filmes)
     } catch (error) {
-        resultadoDiv.textContent = "Filme não encontrado ou erro na busca.";
-    }
+        showToast( "Filme não encontrado ou erro na busca.");
+    } finally{hideLoader()}
 });
