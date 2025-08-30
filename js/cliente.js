@@ -4,17 +4,21 @@
 const pageSize = 2;
 
 async function listarClientes(page = 0) {
-    const response = await fetch(`${API_CLIENTE}?page=${page}&size=${pageSize}`);
-    const data = await response.json();
-    
-    const lista = document.getElementById("listaClientes");
-    lista.innerHTML = "";
+    showLoader()
+    fetch(`${API_CLIENTE}?page=${page}&size=${pageSize}`)
+    .then(response => response.json())
+    .then(data => {
+        const lista = document.getElementById("listaClientes");
+        lista.innerHTML = "";
 
-    data.content.forEach(cliente => {       
-        lista.appendChild(criarCardCliente(cliente));
-    });
+        data.content.forEach(cliente => {       
+            lista.appendChild(criarCardCliente(cliente));
+        });
 
-    atualizarPaginacao(data);
+        atualizarPaginacao(data);
+    })
+    .catch(err => console.error("Erro ao buscar filmes:", err))
+    .finally(() => hideLoader()); // sempre esconde no final 
 }
 
 function atualizarPaginacao(data) {

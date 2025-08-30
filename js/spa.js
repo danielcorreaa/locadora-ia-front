@@ -2,10 +2,10 @@
 const URL_BACKEND_LOCAL = "http://localhost:8080"
 const URL_BACKEND = "https://locadora-ia.onrender.com"
 
-const API_CLIENTE = URL_BACKEND+"/clientes";
-const API_FILME = URL_BACKEND+"/filmes";
-const API_LOCACAO = URL_BACKEND+"/locacoes";
-const API_MULTA = URL_BACKEND+"/multas";
+const API_CLIENTE = URL_BACKEND_LOCAL+"/clientes";
+const API_FILME = URL_BACKEND_LOCAL+"/filmes";
+const API_LOCACAO = URL_BACKEND_LOCAL+"/locacoes";
+const API_MULTA = URL_BACKEND_LOCAL+"/multas";
 
 
 // Toast
@@ -47,6 +47,15 @@ document.querySelectorAll('.cpf-input').forEach(input => {
         e.target.value = value;
     });
 });
+
+// Funções utilitárias
+function showLoader() {
+  document.getElementById("loader").style.display = "flex";
+}
+
+function hideLoader() {
+  document.getElementById("loader").style.display = "none";
+}
 
 
 // =================== Inicialização ===================
