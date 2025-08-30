@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locadora de Vídeo SPA</title>
+    <link rel="stylesheet" href="css/style-3.css">
+    <link rel="icon" type="images/png" href="assets/img/favicon.png">
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+        <h1 class="logo-title">CineMax Prime</h1>
+        <button id="logoutBtn" class="menu-btn logout" title="Sair">
+            <!-- Ícone SVG de logout -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 24 24">
+              <path d="M16 13v-2H7V8l-5 4 5 4v-3h9zm3-10H5c-1.1 0-2 .9-2 
+              2v4h2V5h14v14H5v-4H3v4c0 1.1.9 2 
+              2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+            </svg>
+          </button>
+        </div>
+        <!-- Menu de navegação -->
+        <nav class="menu">
+            <button class="menu-btn active" data-section="clientes">Clientes</button>
+            <button class="menu-btn" data-section="filmes">Filmes</button>
+            <button class="menu-btn" data-section="locacoes">Locações</button>
+            <button class="menu-btn" data-section="finalizar">Finalizar Locação</button>
+            <button class="menu-btn" data-section="multas">Multas</button>
+        </nav>
+
+        <!-- Seção Clientes -->
+        <section id="clientes" class="section">
+            <h2>Gestão de Clientes</h2>
+            <div class="form-container">
+                <h3>Cadastrar Cliente</h3>
+                <form id="formCliente">
+                    <input type="text" class="cpf-input" id="clienteCpf" placeholder="CPF" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                    <input type="text" id="clienteNome" placeholder="Nome" required>
+                    <input type="email" id="clienteEmail" placeholder="Email" required>
+                    <button type="submit">Cadastrar Cliente</button>
+                </form>
+            </div>
+
+            <!-- Busca por CPF -->
+            <div class="search-container">
+                <h2>Buscar Cliente</h2>
+                <input type="text" id="searchCpf" class="cpf-input" placeholder="Digite o CPF do cliente" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                <button id="btnBuscar">Buscar</button>
+            </div>
+
+            <div class="list-container">
+                <h3>Clientes Cadastrados</h3>
+                <div class="cards" id="listaClientes"></div>
+                <div id="paginacao" class="paginacao"></div>
+            </div>
+        </section>
+
+        <!-- Seção Filmes -->
+        <section id="filmes" class="section" style="display:none;">
+            <h2>Gestão de Filmes</h2>
+            <div class="form-container">
+                <h3>Cadastrar Filme</h3>
+                <form id="formFilme">
+                    <input type="text" id="filmeId" placeholder="ID" required>
+                    <input type="text" id="filmeTitulo" placeholder="Título" required>
+                    <input type="text" id="filmeGenero" placeholder="Gênero" required>
+                    <input type="number" id="filmeAno" placeholder="Ano de Lançamento" required>
+                    <label>
+                        <input type="checkbox" id="filmeDisponivel" checked> Disponível
+                    </label>
+                    <button type="submit">Cadastrar Filme</button>
+                </form>
+            </div>
+            <!-- Busca por ID -->
+            <div class="search-container">
+                <h2>Buscar Filme</h2>
+                <input type="text" id="searchId" placeholder="Digite o código do Filme">
+                <button id="btnBuscarFilme">Buscar</button>
+            </div>
+
+            <div class="list-container">
+                <h3>Filmes Cadastrados</h3>
+                <div class="cards" id="listaFilmes"></div>
+                <div id="paginacaoFilme" class="paginacao"></div>
+
+            </div>
+        </section>
+
+        <!-- Seção Locações -->
+        <section id="locacoes" class="section" style="display:none;">
+            <h2>Gestão de Locações</h2>
+            <div class="form-container">
+            <h3>Cadastrar Locação</h3>
+                <form id="formLocacao">
+                    <!-- Cliente -->
+                    <label for="inputCliente">Cliente</label>
+                    <div class="input-group">
+                    <input type="text" id="inputCliente" placeholder="Selecione um cliente" readonly required>
+                    <input type="hidden" id="clienteCpf"> <!-- guarda CPF real -->
+                    <button type="button" id="btnSelecionarCliente">Selecionar</button>
+                    </div>
+
+                    <!-- Filmes -->
+                    <label for="inputFilme">Filmes</label>
+                    <div style="display:flex; gap:.5rem;">
+                    <!-- <input type="text" id="inputFilme" placeholder="Selecione filmes" readonly> -->
+                    <div id="filmesSelecionadosContainer"></div>
+                    <button type="button" onclick="abrirModalFilmes()">Buscar</button>
+                    </div>
+
+
+                    <!-- Datas -->
+                    <label for="dataLocacao">Data da Locação:</label>
+                    <input type="date" id="dataLocacao" required>
+                    <label for="dataDevolucao">Data de Devolução:</label>
+                    <input type="date" id="dataDevolucao" required>
+
+                    <button type="submit">Cadastrar Locação</button>
+                </form>
+            </div>
+
+            <!-- Busca por cpf -->
+            <div class="search-container">
+                <h2>Buscar Locação por cliente</h2>
+                <input type="text" id="searchLocacao" placeholder="Digite cpf do cliente">
+                <button id="btnBuscarLocacao">Buscar</button>
+            </div>
+            <div class="list-container">
+            <h3>Locações Cadastradas</h3>
+            <div class="cards" id="listaLocacoes"></div>
+
+            <div id="modalCliente" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <h3>Selecionar Cliente</h3>
+                    <input type="text" id="cpfBusca" placeholder="Digite CPF">
+                    <button id="btnBuscarCliente">Buscar</button>
+                    <div id="resultadoCliente"></div>
+                    <button id="btnFecharCliente">Fechar</button>
+                </div>
+            </div>
+           <!-- Modal Selecionar Filmes -->
+            <div id="modalFilmes" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h3>Selecionar Filme</h3>
+                    <button class="modal-close" onclick="fecharModalFilmes()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                    <label for="inputBuscarFilme">Digite o título do filme:</label>
+                    <input type="text" id="inputBuscarFilme" placeholder="Ex: Matrix">
+                    <button type="button" onclick="buscarFilmes()">Buscar</button>
+                    
+                    <div id="resultadoFilmes"></div>
+                    </div>
+                    <div class="modal-footer">
+                    <button onclick="fecharModalFilmes()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+
+            </div>
+
+
+        </section>
+
+        <!-- Seção Finalizar Locação -->
+        <section id="finalizar" class="section" style="display:none;">
+            <h2>Finalizar Locação</h2>
+
+            <!-- Busca por CPF -->
+            <div class="search-container">
+                <h2>Buscar Locação por Cliente</h2>
+                <input type="text" id="searchDevolucao" placeholder="Digite o CPF do cliente">
+                <button id="btnBuscarDevolucao" onclick="buscarDevolucoes()">Buscar</button>
+            </div>
+
+            <!-- Lista de locações -->
+            <div class="list-container">
+                <h3>Locações Ativas</h3>
+                <div class="cards" id="listaLocacoesAtivas">
+                <!-- Cards das locações serão renderizados aqui via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Finalizar Locação -->
+        <div id="modalFinalizar" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" id="closeModalFinalizar">&times;</span>
+                <h3>Finalizar Locação</h3>
+                <form id="formFinalizarLocacao">
+                <input type="hidden" id="locacaoIdFinalizar">
+                <label for="dataDevolucaoFinal">Data de Devolução:</label>
+                <input type="date" id="dataDevolucaoFinal" required>
+                <button type="submit" class="btn">Salvar</button>
+                </form>
+            </div>
+        </div>
+
+       
+
+
+
+        <!-- Multa-->
+        <section id="multas" class="section" style="display:none;">
+            <h2>Multas</h2>
+            <!-- Busca por cpf -->
+            <div class="search-container">
+                <h2>Buscar Multa por cliente</h2>
+                <input type="text" id="searchMulta" placeholder="Digite cpf do cliente">
+                <button id="btnBuscarMulta">Buscar</button>
+            </div>
+
+            <div class="list-container">
+                <h3>Multas Cadastradas</h3>
+                <div class="cards" id="listaMultas"></div>
+
+
+            </div>
+            
+        </section>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="modalEdit" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar</h2>
+            <form id="formEdit"></form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toastContainer"></div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2025 CineMax Prime - A magia do cinema na sua casa 🎬</p>
+    </footer>
+      
+
+    <script src="js/cliente.js"></script>
+    <script src="js/filmes.js"></script>
+    <script src="js/locacao.js"></script>
+    <script src="js/devolucao.js"></script>
+    <script src="js/multa.js"></script>
+    <script src="js/spa.js"></script>
+
+    <script>
+       
+      </script>
+</body>
+</html>

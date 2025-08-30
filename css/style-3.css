@@ -1,0 +1,574 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f8fafc;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Container principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Títulos */
+h1 {
+  text-align: center;
+  color: #38bdf8;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+h2, h3 {
+  color: #f87171;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 12px;
+}
+
+.menu-btn {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid #38bdf8;
+  color: #38bdf8;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  backdrop-filter: blur(8px);
+}
+
+.menu-btn:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.menu-btn.active {
+  background: #f87171;
+  border-color: #f87171;
+  color: #fff;
+}
+
+/* Seções */
+.section {
+  margin-top: 20px;
+}
+
+/* Formulários */
+.form-container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.form-container form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.form-container input,
+.form-container select {
+  flex: 1 1 220px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #475569;
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+  border-color: #38bdf8;
+  outline: none;
+}
+
+.form-container label {
+  flex-basis: 100%;
+  margin-top: 10px;
+}
+
+.form-container button {
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.form-container button:hover {
+  background: #0ea5e9;
+}
+
+/* Listagem de cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.card p {
+  margin-bottom: 8px;
+}
+
+.card button {
+  background-color: #38bdf8;
+  color: #0f172a;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.card button:hover {
+  background-color: #0ea5e9;
+}
+
+/* Paginacao */
+.paginacao {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.paginacao button {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid #38bdf8;
+  padding: 8px 15px;
+  margin: 0 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.paginacao button:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.logout {
+  background: #f87171;
+  padding: 12px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout:hover {
+  background: #dc2626;
+}
+
+/* Footer */
+footer {
+  background: rgba(30, 41, 59, 0.8);
+  color: #cbd5e1;
+  text-align: center;
+  padding: 14px 0;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 40px;
+  border-top: 1px solid #334155;
+  backdrop-filter: blur(6px);
+}
+/* === MODAL (dark + glass) === */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;                 /* controlado via .show */
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(2, 6, 23, 0.6); /* backdrop escuro */
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+}
+.modal.show { display: flex; }
+
+/* trava o scroll do body quando modal aberto */
+body.modal-open { overflow: hidden; }
+
+/* caixa do modal */
+
+.modal-content {
+  width: 100%;
+  max-width: 680px;
+  background: rgba(30, 41, 59, 0.85); /* slate-800 translúcido */
+  border: 1px solid rgba(148, 163, 184, 0.25); /* slate-400 */
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+  padding: 1rem 1.25rem;
+  color: #e2e8f0; /* slate-200 */
+  animation: modalIn 180ms ease-out;
+}
+
+/* header / footer */
+.modal-header,
+.modal-footer {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.modal-header {
+  justify-content: space-between;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(148,163,184,0.15);
+  margin-bottom: .75rem;
+}
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #38bdf8; /* azul neon */
+}
+.modal-footer {
+  justify-content: flex-end;
+  padding-top: .75rem;
+  border-top: 1px solid rgba(148,163,184,0.15);
+  margin-top: .75rem;
+  gap: .5rem;
+}
+
+/* corpo do modal */
+.modal-body {
+  display: grid;
+  gap: .75rem;
+}
+
+/* botão fechar (X) */
+.modal-close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-size: 1.35rem;
+  color: #94a3b8; /* slate-400 */
+  cursor: pointer;
+  line-height: 1;
+}
+.modal-close:hover { color: #f87171; }
+
+/* inputs e selects do modal */
+.modal-content input[type="text"],
+.modal-content input[type="date"],
+.modal-content input[type="email"],
+.modal-content input[type="number"],
+.modal-content select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #475569;          /* slate-600 */
+  background: #0f172a;                 /* slate-900 */
+  color: #f8fafc;                      /* slate-50 */
+}
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #38bdf8;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(56,189,248,0.25);
+}
+
+/* botões do modal */
+.modal-content button {
+  padding: .6rem 1rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: #38bdf8;    /* primário */
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s ease, background .2s ease, filter .2s ease;
+}
+.modal-content button:hover { background: #0ea5e9; transform: translateY(-1px); }
+.modal-content .btn-secondary {
+  background: rgba(56,189,248,0.08);
+  color: #e2e8f0;
+  border: 1px solid #334155;
+}
+.modal-content .btn-secondary:hover { filter: brightness(1.1); }
+
+/* áreas de resultado (cliente / filmes) */
+#resultadoCliente,
+#resultadoFilmes {
+  background: rgba(15, 23, 42, 0.5);  /* slate-900 translúcido */
+  border: 1px solid rgba(148,163,184,0.2);
+  border-radius: 12px;
+  padding: .75rem;
+  max-height: 340px;
+  overflow: auto;
+}
+
+/* item de resultado */
+.resultado-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .6rem .75rem;
+  border-radius: 10px;
+  border: 1px dashed rgba(148,163,184,0.25);
+  background: rgba(255,255,255,0.02);
+}
+.resultado-item + .resultado-item { margin-top: .5rem; }
+.resultado-item p { margin: 0; color: #e5e7eb; }
+.resultado-item:hover {
+  border-color: #38bdf8;
+  background: rgba(56,189,248,0.06);
+}
+
+/* badges/pílulas (se usar) */
+.badge {
+  display: inline-block;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  border: 1px solid rgba(148,163,184,0.3);
+  background: rgba(148,163,184,0.08);
+  color: #cbd5e1;
+}
+
+/* animação */
+@keyframes modalIn {
+  from { transform: translateY(10px) scale(0.98); opacity: 0; }
+  to   { transform: translateY(0)    scale(1);     opacity: 1; }
+}
+
+/* responsivo */
+@media (max-width: 520px) {
+  .modal-content {
+    max-width: 100%;
+    padding: .9rem 1rem;
+    border-radius: 14px;
+  }
+  .modal-header h3 { font-size: 1rem; }
+}
+
+/* ===== Search container (versão dark / glass) ===== */
+.search-container {
+  margin: 20px 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);                 /* translúcido sobre o fundo escuro */
+  border: 1px solid rgba(148,163,184,0.06);           /* borda suave */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-container h2 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  color: #38bdf8; /* azul neon */
+  width: 100%;
+}
+
+.search-container input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0f172a;   /* input escuro */
+  color: #e2e8f0;
+  font-size: 14px;
+  width: 220px;
+}
+
+.search-container input::placeholder {
+  color: #94a3b8;
+}
+
+.search-container input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56,189,248,0.12);
+  outline: none;
+}
+
+.search-container button {
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #38bdf8;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .18s ease, transform .12s ease;
+}
+
+.search-container button:hover {
+  background: #0ea5e9;
+  transform: translateY(-1px);
+}
+
+/* resultado da busca dentro do bloco */
+.resultado-busca {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #cbd5e1;
+  width: 100%;
+}
+
+/* ===== Card: filme indisponível ===== */
+.card.indisponivel {
+  background: linear-gradient(180deg, rgba(239,68,68,0.14), rgba(239,68,68,0.08));
+  border: 1px solid rgba(239,68,68,0.4);
+  color: #ffe5e5;
+  box-shadow: 0 8px 22px rgba(239,68,68,0.15);
+}
+
+/* ===== Card: cliente finalizado ===== */
+.card.finalizado {
+  background: linear-gradient(180deg, rgba(220,38,38,0.16), rgba(220,38,38,0.1));
+  border: 1px solid rgba(220,38,38,0.45);
+  color: #fff0f0;
+  box-shadow: 0 10px 24px rgba(220,38,38,0.18);
+}
+
+/* Botões dentro desses cards */
+.card.indisponivel button,
+.card.finalizado button {
+  background: rgba(239,68,68,0.18);
+  color: #fff;
+  border: 1px solid rgba(239,68,68,0.25);
+}
+
+.card.indisponivel button:hover,
+.card.finalizado button:hover {
+  background: rgba(239,68,68,0.28);
+  transform: translateY(-1px);
+}
+
+
+.card.indisponivel button:hover,
+.card.indisponivel button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+/* Responsividade: mantém search em coluna em telas pequenas */
+@media (max-width: 520px) {
+  .search-container {
+    gap: 8px;
+    padding: 12px;
+  }
+  .search-container input {
+    width: 100%;
+  }
+  .search-container button { width: 100%; }
+}
+
+
+.logo-title {
+    font-family: 'Cinzel Decorative', cursive; /* Fonte mais estilosa */
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #fbebaf; /* tom mais chamativo */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    margin: 0;
+}
+/* Toasts */
+#toastContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none; /* permite clicar "através" do container; toasts individuais recebem pointer-events */
+}
+
+.toast {
+  pointer-events: auto; /* permite interação com o próprio toast (ex: botão fechar) */
+  margin-bottom: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 700;
+  min-width: 200px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  animation: fadein 0.5s, fadeout 0.5s 3s;
+}
+
+/* variantes */
+.toast.success { background-color: #56a292; }
+.toast.error   { background-color: #ff1d44; }
+
+/* animações */
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeout {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+/* acessibilidade: desliga animações quando o usuário prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .toast { animation: none; }
+}
+
+

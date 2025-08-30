@@ -1,0 +1,92 @@
+[
+  {
+    "id": "L001",
+    "cliente": { "cpf": "12345678901", "nome": "Ana Silva", "email": "ana.silva@email.com" },
+    "filme": { "id": "F001", "titulo": "O Poderoso Chefão", "genero": "Drama", "anoLancamento": 1972 },
+    "dataLocacao": "2025-08-01",
+    "dataPrevDevolucao": "2025-08-05",
+    "dataDevolucao": "2025-08-05",
+    "finalizada": true
+  },
+  {
+    "id": "L002",
+    "cliente": { "cpf": "23456789012", "nome": "Bruno Oliveira", "email": "bruno.oliveira@email.com" },
+    "filme": { "id": "F002", "titulo": "Interestelar", "genero": "Ficção Científica", "anoLancamento": 2014 },
+    "dataLocacao": "2025-08-10",
+    "dataPrevDevolucao": "2025-08-15",
+    "dataDevolucao": "2025-08-18",
+    "finalizada": true
+  },
+  {
+    "id": "L003",
+    "cliente": { "cpf": "34567890123", "nome": "Carla Souza", "email": "carla.souza@email.com" },
+    "filme": { "id": "F003", "titulo": "A Origem", "genero": "Ação", "anoLancamento": 2010 },
+    "dataLocacao": "2025-08-12",
+    "dataPrevDevolucao": "2025-08-16",
+    "dataDevolucao": "2025-08-20",
+    "finalizada": true
+  },
+  {
+    "id": "L004",
+    "cliente": { "cpf": "45678901234", "nome": "Diego Pereira", "email": "diego.pereira@email.com" },
+    "filme": { "id": "F004", "titulo": "Forrest Gump", "genero": "Drama", "anoLancamento": 1994 },
+    "dataLocacao": "2025-08-15",
+    "dataPrevDevolucao": "2025-08-19",
+    "dataDevolucao": "2025-08-19",
+    "finalizada": true
+  },
+  {
+    "id": "L005",
+    "cliente": { "cpf": "56789012345", "nome": "Eduarda Lima", "email": "eduarda.lima@email.com" },
+    "filme": { "id": "F005", "titulo": "Vingadores: Ultimato", "genero": "Ação", "anoLancamento": 2019 },
+    "dataLocacao": "2025-08-18",
+    "dataPrevDevolucao": "2025-08-23",
+    "dataDevolucao": null,
+    "finalizada": false
+  },
+  {
+    "id": "L006",
+    "cliente": { "cpf": "67890123456", "nome": "Felipe Alves", "email": "felipe.alves@email.com" },
+    "filme": { "id": "F006", "titulo": "Matrix", "genero": "Ficção Científica", "anoLancamento": 1999 },
+    "dataLocacao": "2025-08-17",
+    "dataPrevDevolucao": "2025-08-22",
+    "dataDevolucao": "2025-08-26",
+    "finalizada": true
+  },
+  {
+    "id": "L007",
+    "cliente": { "cpf": "78901234567", "nome": "Gabriela Costa", "email": "gabriela.costa@email.com" },
+    "filme": { "id": "F007", "titulo": "Clube da Luta", "genero": "Drama", "anoLancamento": 1999 },
+    "dataLocacao": "2025-08-19",
+    "dataPrevDevolucao": "2025-08-24",
+    "dataDevolucao": null,
+    "finalizada": false
+  },
+  {
+    "id": "L008",
+    "cliente": { "cpf": "89012345678", "nome": "Henrique Rocha", "email": "henrique.rocha@email.com" },
+    "filme": { "id": "F008", "titulo": "Gladiador", "genero": "Ação", "anoLancamento": 2000 },
+    "dataLocacao": "2025-08-05",
+    "dataPrevDevolucao": "2025-08-10",
+    "dataDevolucao": "2025-08-12",
+    "finalizada": true
+  },
+  {
+    "id": "L009",
+    "cliente": { "cpf": "90123456789", "nome": "Isabela Martins", "email": "isabela.martins@email.com" },
+    "filme": { "id": "F009", "titulo": "O Senhor dos Anéis: A Sociedade do Anel", "genero": "Fantasia", "anoLancamento": 2001 },
+    "dataLocacao": "2025-08-14",
+    "dataPrevDevolucao": "2025-08-19",
+    "dataDevolucao": "2025-08-22",
+    "finalizada": true
+  },
+  {
+    "id": "L010",
+    "cliente": { "cpf": "01234567890", "nome": "João Ferreira", "email": "joao.ferreira@email.com" },
+    "filme": { "id": "F010", "titulo": "O Senhor dos Anéis: As Duas Torres", "genero": "Fantasia", "anoLancamento": 2002 },
+    "dataLocacao": "2025-08-20",
+    "dataPrevDevolucao": "2025-08-25",
+    "dataDevolucao": null,
+    "finalizada": false
+  }
+]

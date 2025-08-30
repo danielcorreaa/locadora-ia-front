@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locadora de Vídeo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+
+        <h1>Locadora de Vídeo</h1>
+
+        <!-- Menu de navegação -->
+        <nav class="menu">
+            <button class="menu-btn active" data-section="clientes">Clientes</button>
+            <button class="menu-btn" data-section="filmes">Filmes</button>
+            <button class="menu-btn" data-section="locacoes">Locações</button>
+        </nav>
+
+        <!-- Seção Clientes -->
+        <section id="clientes" class="section">
+            <h2>Gestão de Clientes</h2>
+
+            <div class="form-container">
+                <h3>Cadastrar Cliente</h3>
+                <form id="formCliente">
+                    <input type="text" id="clienteId" placeholder="ID" required>
+                    <input type="text" id="clienteNome" placeholder="Nome" required>
+                    <input type="text" id="clienteCpf" placeholder="CPF" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                    <input type="email" id="clienteEmail" placeholder="Email" required>
+                    <button type="submit">Cadastrar Cliente</button>
+                </form>
+            </div>
+
+            <div class="list-container">
+                <h3>Clientes Cadastrados</h3>
+                <div class="cards" id="listaClientes"></div>
+            </div>
+        </section>
+
+        <!-- Seção Filmes -->
+        <section id="filmes" class="section" style="display:none;">
+            <h2>Gestão de Filmes</h2>
+
+            <div class="form-container">
+                <h3>Cadastrar Filme</h3>
+                <form id="formFilme">
+                    <input type="text" id="filmeId" placeholder="ID" required>
+                    <input type="text" id="filmeTitulo" placeholder="Título" required>
+                    <input type="text" id="filmeGenero" placeholder="Gênero" required>
+                    <input type="number" id="filmeAno" placeholder="Ano de Lançamento" required>
+                    <label>
+                        <input type="checkbox" id="filmeDisponivel" checked> Disponível
+                    </label>
+                    <button type="submit">Cadastrar Filme</button>
+                </form>
+            </div>
+
+            <div class="list-container">
+                <h3>Filmes Cadastrados</h3>
+                <div class="cards" id="listaFilmes"></div>
+            </div>
+        </section>
+
+        <!-- Seção Locações -->
+        <section id="locacoes" class="section" style="display:none;">
+            <h2>Gestão de Locações</h2>
+
+            <div class="form-container">
+                <h3>Cadastrar Locação</h3>
+                <form id="formLocacao">
+                    <label for="selectCliente">Cliente:</label>
+                    <select id="selectCliente" required></select>
+
+                    <label for="selectFilme">Filme:</label>
+                    <select id="selectFilme" required></select>
+
+                    <label for="dataLocacao">Data da Locação:</label>
+                    <input type="date" id="dataLocacao" required>
+
+                    <label for="dataDevolucao">Data de Devolução:</label>
+                    <input type="date" id="dataDevolucao" required>
+
+                    <button type="submit">Cadastrar Locação</button>
+                </form>
+            </div>
+
+            <div class="list-container">
+                <h3>Locações Cadastradas</h3>
+                <div class="cards" id="listaLocacoes"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="container">
+        <h1>Finalizar Locação</h1>
+
+        <div class="form-container">
+            <h3>Escolha a locação para finalizar</h3>
+            <form id="formFinalizarLocacao">
+                <label for="selectLocacao">Locação:</label>
+                <select id="selectLocacao" required></select>
+
+                <label for="dataDevolucao">Data de Devolução:</label>
+                <input type="date" id="dataDevolucaoFinal" required>
+
+                <button type="submit">Finalizar Locação</button>
+            </form>
+        </div>
+
+        <div class="list-container">
+            <h3>Locações Ativas</h3>
+            <div class="cards" id="listaLocacoesAtivas"></div>
+        </div>
+
+    <!-- Modal para edição -->
+    <div id="modalEdit" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar</h2>
+            <form id="formEdit"></form>
+        </div>
+    </div>
+
+    <!-- Container de Toast -->
+    <div id="toastContainer"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
