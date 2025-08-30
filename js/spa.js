@@ -2,10 +2,10 @@
 const URL_BACKEND_LOCAL = "http://localhost:8080"
 const URL_BACKEND = "https://locadora-ia.onrender.com"
 
-const API_CLIENTE = {URL_BACKEND}+"/clientes";
-const API_FILME = {URL_BACKEND}+"/filmes";
-const API_LOCACAO = {URL_BACKEND}+"/locacoes";
-const API_MULTA = {URL_BACKEND}+"/multas";
+const API_CLIENTE = URL_BACKEND+"/clientes";
+const API_FILME = URL_BACKEND+"/filmes";
+const API_LOCACAO = URL_BACKEND+"/locacoes";
+const API_MULTA = URL_BACKEND+"/multas";
 
 
 // Toast
