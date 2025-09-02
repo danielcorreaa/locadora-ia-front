@@ -478,7 +478,7 @@ body.modal-open { overflow: hidden; }
 }
 
 /* ===== Card: cliente finalizado ===== */
-.card.finalizado {
+.card.bloqueado {
   background: linear-gradient(180deg, rgba(220,38,38,0.16), rgba(220,38,38,0.1));
   border: 1px solid rgba(220,38,38,0.45);
   color: #fff0f0;
@@ -487,20 +487,20 @@ body.modal-open { overflow: hidden; }
 
 /* Botões dentro desses cards */
 .card.indisponivel button,
-.card.finalizado button {
+.card.bloqueado button {
   background: rgba(239,68,68,0.18);
   color: #fff;
   border: 1px solid rgba(239,68,68,0.25);
 }
 
 .card.indisponivel button:hover,
-.card.finalizado button:hover {
+.card.bloqueado button:hover {
   background: rgba(239,68,68,0.28);
   transform: translateY(-1px);
 }
 
 
-.card.indisponivel button:hover,
+.card.bloqueado button:hover,
 .card.indisponivel button:hover {
   filter: brightness(1.08);
   transform: translateY(-1px);
